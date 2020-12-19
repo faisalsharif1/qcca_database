@@ -18,7 +18,7 @@ USE `qec_cms`;
 
 -- Dumping structure for table qec_cms.classes
 CREATE TABLE IF NOT EXISTS `classes` (
-  `classid` int(10) unsigned NOT NULL,
+  `classid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `classname` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`classid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `classes` (
 
 -- Dumping structure for table qec_cms.subjects
 CREATE TABLE IF NOT EXISTS `subjects` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `subjectname` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 
 -- Dumping structure for table qec_cms.survey
 CREATE TABLE IF NOT EXISTS `survey` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `surveyname` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `surveydate` date DEFAULT NULL,
   `surveymonth` varchar(50) DEFAULT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `survey` (
 
 -- Dumping structure for table qec_cms.surveyquestions
 CREATE TABLE IF NOT EXISTS `surveyquestions` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `surveyid` int(11) NOT NULL DEFAULT 0,
   `question` varchar(500) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `totalweight` int(11) NOT NULL DEFAULT 0,
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `surveyquestions` (
 
 -- Dumping structure for table qec_cms.surveyquestions_answers
 CREATE TABLE IF NOT EXISTS `surveyquestions_answers` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `surveyquestionid` int(11) NOT NULL,
   `surveyanswer` varchar(200) NOT NULL DEFAULT '',
   `surveyanswerweight` int(11) NOT NULL DEFAULT 0,
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `surveyquestions_answers` (
 
 -- Dumping structure for table qec_cms.survey_mappings
 CREATE TABLE IF NOT EXISTS `survey_mappings` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `surveyid` int(11) NOT NULL,
   `classid` int(11) NOT NULL,
   `subjectid` int(11) NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `survey_mappings` (
 
 -- Dumping structure for table qec_cms.survey_mappings_result
 CREATE TABLE IF NOT EXISTS `survey_mappings_result` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `surveymappingid` int(11) NOT NULL,
   `surveyquestion` varchar(500) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `surveyquestionweightage` int(11) NOT NULL DEFAULT 0,
@@ -97,10 +97,22 @@ CREATE TABLE IF NOT EXISTS `survey_mappings_result` (
 
 -- Dumping structure for table qec_cms.teachers
 CREATE TABLE IF NOT EXISTS `teachers` (
-  `teacherid` int(11) NOT NULL,
+  `teacherid` int(11) NOT NULL AUTO_INCREMENT,
   `teachername` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`teacherid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table qec_cms.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `userid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `teacherid` int(11) DEFAULT NULL,
+  `isactive` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`userid`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 
